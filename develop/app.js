@@ -157,6 +157,7 @@ function engineerInfo() {
 }
 managerInfo();
 
+// here Im making classes with employee as the base class 
 class Employee{
     constructor(name,id,email, role){
     this.name= name
@@ -165,19 +166,21 @@ class Employee{
     this.role=role
 
 }}
-
+// extending base class to manager
 class Manager extends Employee {
     constructor (name, id, email,role,number){
         super(name,id,email,role)
         this.number= number
     }
 }
+// extending base class to intern
 class Intern extends Employee {
     constructor (name,id,email,role,school){
         super(name,id,email,role)
         this.school=school
     }
 }
+// extending base class to engineer
 class Engineer extends Employee {
     constructor(name,id,email,role,github){
         super(name,id,email,role)
