@@ -9,7 +9,9 @@ const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
+const manager={};
+const engineer ={};
+const intern ={}; 
 
 // Write code to use inquirer to gather information about the development team members,
 function managerInfo() {
@@ -112,8 +114,8 @@ function internInfo() {
 
         }])
         .then(data => {
-            const Intern = new Intern(data.name, data.id, data.email, data.role, data.school)
-            team.push(Intern)
+            const intern = new Intern(data.name, data.id, data.email, data.role, data.school)
+            team.push(intern)
             nextEmployee()
         })
 }
@@ -150,8 +152,8 @@ function engineerInfo() {
 
         }])
         .then(data => {
-            const Engineer = new Engineer(data.name, data.id, data.email, data.role, data.github)
-            team.push(Engineer)
+            const engineer = new Engineer(data.name, data.id, data.email, data.role, data.github)
+            team.push(engineer)
             nextEmployee()
         })
 }
@@ -187,6 +189,16 @@ class Engineer extends Employee {
         this.github= github
     }
 }
+ render([manager, intern,engineer]);
+
+
+ fs.writeFile(outputPath, JSON.stringify(render), (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+})
+
+managerInfo();
+
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 
