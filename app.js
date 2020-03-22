@@ -1,7 +1,8 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Manager = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Manager.js");
+const Engineer = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Engineer.js");
+const Intern = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Intern.js");
 const inquirer = require("inquirer");
+const Employee = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Employee.js");
 const path = require("path");
 const fs = require("fs");
 
@@ -75,8 +76,8 @@ function nextEmployee() {
     engineerInfo();
     break;
     case "No more employees":
-    render();
-    break
+    return;
+    
             }
         })
 }
@@ -160,35 +161,7 @@ function engineerInfo() {
 managerInfo();
 
 // here Im making classes with employee as the base class 
-class Employee{
-    constructor(name,id,email, role){
-    this.name= name
-    this.id=id
-    this.email=email
-    this.role=role
 
-}}
-// extending base class to manager
-class Manager extends Employee {
-    constructor (name, id, email,role,number){
-        super(name,id,email,role)
-        this.number= number
-    }
-}
-// extending base class to intern
-class Intern extends Employee {
-    constructor (name,id,email,role,school){
-        super(name,id,email,role)
-        this.school=school
-    }
-}
-// extending base class to engineer
-class Engineer extends Employee {
-    constructor(name,id,email,role,github){
-        super(name,id,email,role)
-        this.github= github
-    }
-}
  render([manager, intern,engineer]);
 
 
@@ -197,7 +170,7 @@ class Engineer extends Employee {
     console.log('The file has been saved!');
 })
 
-managerInfo();
+
 
 // and to create objects for each team member (using the correct classes as blueprints!)
 
