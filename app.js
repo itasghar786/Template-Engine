@@ -1,18 +1,16 @@
-const Manager = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Manager.js");
-const Engineer = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Engineer.js");
-const Intern = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Intern.js");
+const Manager = require("./lib/Manager.js");
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
 const inquirer = require("inquirer");
-const Employee = require("/Users/abdullah/engine1/engine2/Template-Engine/lib/Employee.js");
 const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-const render = require("./lib/htmlRenderer");
-const manager={};
-const engineer ={};
-const intern ={}; 
+const render = require("./lib/htmlRenderer.js");
+
+const team = [];
 
 // Write code to use inquirer to gather information about the development team members,
 function managerInfo() {
@@ -52,7 +50,7 @@ function managerInfo() {
             team.push(manager)
             nextEmployee()
         })
-}
+    }
 function nextEmployee() {
     inquirer.prompt({
         type: "list",
@@ -78,7 +76,7 @@ function nextEmployee() {
     case "No more employees":
     return;
     
-            }
+    }
         })
 }
 
@@ -158,17 +156,19 @@ function engineerInfo() {
             nextEmployee()
         })
 }
-managerInfo();
 
 // here Im making classes with employee as the base class 
-
+function writeOutputFile() {
  render([manager, intern,engineer]);
 
 
  fs.writeFile(outputPath, JSON.stringify(render), (err) => {
     if (err) throw err;
     console.log('The file has been saved!');
-})
+    })
+}
+
+managerInfo();
 
 
 
